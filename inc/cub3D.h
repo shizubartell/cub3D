@@ -3,10 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:59:32 by abartell          #+#    #+#             */
-/*   Updated: 2023/01/30 10:59:34 by abartell         ###   ########.fr       */
+/*   Updated: 2023/01/30 12:50:25 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef CUB3D_H
+# define CUB3D_H
+
+//*********************************************************//
+//**                INCLUDES                            **//
+
+# include "../libft/libft.h"
+# include "../minilibx_opengl_20191021/mlx.h"
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+
+//*********************************************************//
+//**                DEFINES                             **//
+
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+# define ESC 53
+
+//*********************************************************//
+//**                STRUCTURES                          **//
+
+typedef struct game
+{
+	
+}	t_game;
+
+//*********************************************************//
+//**                FUNCTIONS                           **//
+//*******************************************************//
+
+//*********************************************************//
+//**                ERRORS.C                            **//
+
+int				errorhandler(int i);
+int				mapending(const char *map);
+
+//*********************************************************//
+//**                MAIN.C                              **//
+
+#endif

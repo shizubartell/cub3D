@@ -6,7 +6,7 @@
 #    By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 10:43:49 by abartell          #+#    #+#              #
-#    Updated: 2023/01/30 11:25:45 by abartell         ###   ########.fr        #
+#    Updated: 2023/01/30 13:05:47 by abartell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ END_COLOR	:= \033[0;39m
 
 SRC_FILES					:=	main.c \
 								parsing.c \
+								errors.c \
 
 OBJ_FILES					:= ${SRC_FILES:.c=.o}
 SRC							:= $(addprefix $(SRC_DIR), $(SRC_FILES))

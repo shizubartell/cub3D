@@ -6,7 +6,7 @@
 #    By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 10:43:49 by abartell          #+#    #+#              #
-#    Updated: 2023/01/30 11:10:28 by abartell         ###   ########.fr        #
+#    Updated: 2023/01/30 11:25:45 by abartell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,9 @@
 
 NAME						:=			cub3D
 
-CFLAGS						:=			-Wall -Wextra -Werror -clang
+CFLAGS						:=			-Wall -Wextra -Werror -g
 CC							:=			gcc
+RM							:=			rm -rf
 
 INC							:=			-I ./inc/
 HEADER						:=			./inc/cub3D.h
@@ -30,7 +31,7 @@ GET_NEXT_LINE_A				:=			./get_next_line/get_next_line.a
 MLX_DIR						:=			minilibx_opengl_20191021
 MLX_A						:=			./minilibx_opengl_20191021/libmlx.a
 
-SRCS_DIR					:=			./srcs/
+SRC_DIR						:=			./src/
 OBJ_DIR						:=			./obj/
 
 # **************************************************************************** #
@@ -44,10 +45,11 @@ END_COLOR	:= \033[0;39m
 # **************************************************************************** #
 # SOURCES
 
-SRCS_FILES					:=
+SRC_FILES					:=	main.c \
+								parsing.c \
 
-OBJ_FILES					:= ${SRCS_FILES:.c=.o}
-SRCS						:= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
+OBJ_FILES					:= ${SRC_FILES:.c=.o}
+SRC							:= $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ							:= $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 # **************************************************************************** #
@@ -65,7 +67,7 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(MLX_A) $(LIBFT_A) $(GET_NEXT_LINE_A) -framework OpenGL -framework AppKit -fsanitize=address -o $(NAME)
 	echo "$(BLUE)$(NAME) compiled and ready to play! :D$(END_COLOR)"
 
-$(OBJ_DIR)%.o : $(SRCS_DIR)%.c
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(OBJ_DIR):

@@ -6,7 +6,13 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 11:11:24 by abartell          #+#    #+#             */
-/*   Updated: 2023/01/30 11:11:25 by abartell         ###   ########.fr       */
+/*   Updated: 2023/01/30 11:30:34 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include	"../inc/cub3D.h"
+
+int	main(void)
+{
+	
+}

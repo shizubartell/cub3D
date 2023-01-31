@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 12:33:11 by abartell          #+#    #+#             */
-/*   Updated: 2023/01/30 13:17:36 by abartell         ###   ########.fr       */
+/*   Updated: 2023/01/31 12:52:58 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,13 @@
 int	errorhandler(int i)
 {
 	if (i == 1)
-		ft_putstr_fd("ERROR\nExtension of map must be .cub", 2);
+		ft_putstr_fd("Extension of map must be .cub \n", 2);
 	else if (i == 2)
-		ft_putstr_fd("ERROR\n", 2);
+		ft_putstr_fd("Wrong number of arguments\n", 2);
+	else if (i == 3)
+		ft_putstr_fd("Error filedescriptor\n", 2);
+	else if (i == 4)
+		ft_putstr_fd("ERROR\n", 2);	
 	return (1);
 }
 
-int	mapending(const char *map)
-{
-	char	*tmp;
-
-	tmp = ft_strchr(map, '.');
-	if (!tmp || ft_strcmp(tmp, ".cub"))
-	return (errorhandler(1));
-}

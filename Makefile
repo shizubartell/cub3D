@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+         #
+#    By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 10:43:49 by abartell          #+#    #+#              #
-#    Updated: 2023/01/30 13:05:47 by abartell         ###   ########.fr        #
+#    Updated: 2023/01/31 15:05:14 by iczarnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 
 NAME						:=			cub3D
 
-CFLAGS						:=			-Wall -Wextra -Werror -g
+CFLAGS						:=			-Wall -Wextra -g
 CC							:=			gcc
 RM							:=			rm -rf
 
@@ -46,8 +46,8 @@ END_COLOR	:= \033[0;39m
 # SOURCES
 
 SRC_FILES					:=	main.c \
-								parsing.c \
 								errors.c \
+								textures.c
 
 OBJ_FILES					:= ${SRC_FILES:.c=.o}
 SRC							:= $(addprefix $(SRC_DIR), $(SRC_FILES))
@@ -65,7 +65,7 @@ $(NAME): $(OBJ)
 	make -C $(LIBFT_DIR)
 	echo "make $(GET_NEXT_LINE_DIR)"
 	make -C $(GET_NEXT_LINE_DIR)
-	$(CC) $(OBJ) $(MLX_A) $(LIBFT_A) $(GET_NEXT_LINE_A) -framework OpenGL -framework AppKit -fsanitize=address -o $(NAME)
+	$(CC) $(OBJ) $(MLX_A) $(LIBFT_A) $(GET_NEXT_LINE_A) -framework OpenGL -framework AppKit -o $(NAME)
 	echo "$(BLUE)$(NAME) compiled and ready to play! :D$(END_COLOR)"
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c

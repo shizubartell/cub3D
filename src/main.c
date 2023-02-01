@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 11:11:24 by abartell          #+#    #+#             */
-/*   Updated: 2023/01/31 15:07:33 by iczarnie         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:36:02 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@ void	get_width_height(t_game *game, char *map)
 	i = 0;
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
-	while (i++ < 10)
+	while (i++ < 8)
+	{
 		line = get_next_line(fd);
+	}	
 	trimmed_line = ft_strtrim(line, "\n");
 	game->width = (int)ft_strlen(trimmed_line);
-	printf("game height %d\n", game->height);
 	while (line != 0)
 	{
 		if (game->width < (int)ft_strlen(trimmed_line))
@@ -36,7 +37,6 @@ void	get_width_height(t_game *game, char *map)
 		game->height++;
 		line = get_next_line(fd);
 		trimmed_line = ft_strtrim(line, "\n");
-		printf("Line :%s\n", trimmed_line);
 	}
 	free(trimmed_line);
 	free(line);
@@ -63,7 +63,7 @@ t_game	*init_game(char *map)
 
 	game = malloc(sizeof(t_game));
 	game->width = 0;
-	game->height = -1;
+	game->height = 0;
 	game->n_texture = 0;
 	game->s_texture = 0;
 	game->w_texture = 0;
@@ -82,12 +82,27 @@ int	main(int argc, char **argv)
 		return (errorhandler(2));
 	valid_extension(argv[1]);
 	game = init_game(argv[1]);
-	read_textures(game, argv[1]);
-	if (check_textures(game) == 0)
-		printf("sad\n");
-	else
-		printf("textures exist\n");
 	get_width_height(game, argv[1]);
-	printf("%d\n", game->width);
-	printf("%d\n", game->height);
+	read_textures(game, argv[1]);
+	// printf("N: %s\n", game->n_texture);
+	// printf("S: %s\n", game->s_texture);
+	// printf("W: %s\n", game->w_texture);
+	// printf("E: %s\n", game->e_texture);
+	// printf("floor: %s\n", game->floor_rgb);
+	// printf("ceiling: %s\n", game->ceiling_rgb);
+	// printf("widht: %d\n", game->width);
+	// printf("height: %d\n", game->height);
+	mapreader(game, argv[1]);
+	// int j = 0;
+    // while(i < game->height)
+    // {
+    //     while(j < game->width)
+    //     {
+    //         printf("%c", game->map[i][j]);
+    //         j++;
+    //     }
+    //     j = 0;
+    //     i++;
+    //     printf("\n");
+    // }
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+         #
+#    By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 10:43:49 by abartell          #+#    #+#              #
-#    Updated: 2023/01/31 15:05:14 by iczarnie         ###   ########.fr        #
+#    Updated: 2023/02/01 13:55:58 by abartell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,8 @@ END_COLOR	:= \033[0;39m
 
 SRC_FILES					:=	main.c \
 								errors.c \
-								textures.c
+								textures.c \
+								create_map.c
 
 OBJ_FILES					:= ${SRC_FILES:.c=.o}
 SRC							:= $(addprefix $(SRC_DIR), $(SRC_FILES))

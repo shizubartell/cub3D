@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_map.c                                       :+:      :+:    :+:   */
+/*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 13:39:45 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/01 16:52:52 by abartell         ###   ########.fr       */
+/*   Created: 2023/02/02 08:34:46 by iczarnie          #+#    #+#             */
+/*   Updated: 2023/02/02 09:51:21 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
+#include	"../inc/cub3D.h"
 
-//filling the map with numbers
+//fills rows in map
 char	*fill_map(char *map, char *row)
 {
 	int	x;
@@ -33,14 +33,6 @@ void	map_allocater(t_game *game)
 	int	i;
 
 	i = 0;
-	// game->map = malloc (sizeof(char *) * game->width + 1);
-	// game->map[game->width] = 0;
-	// while (i < game->width)
-	// {
-	// 	game->map[i] = malloc (sizeof(char **) * game->height + 1);
-	// 	game->map[i][game->height] = '\0';
-	// 	i++;
-	// }
 	game->map = malloc (sizeof(char **) * game->height + 1);
 	game->map[game->height] = 0;
 	while (i < game->height)
@@ -59,14 +51,16 @@ int	read_maprows(char *row, int fd, t_game *game)
 
 	i = 0;
 	row = get_next_line(fd);
-	while (i++ < 10)
+	while (i++ < game->row_beggining_of_map)
 	{
+        // printf("row: %s\n", row);
 		row = get_next_line(fd);
 	}
 	i = 0;
-	while (row != NULL)
+	while (row != 0)
 	{
 		game->map[i] = fill_map(game->map[i], row);
+        // printf("map: %s\n", game->map[i]);
 		i++;
 		row = get_next_line(fd);
 	}
@@ -98,7 +92,6 @@ void	filling_space(t_game *game)
 	}
 }
 
-
 int	mapreader(t_game *game, char *file)
 {
 	int		fd;
@@ -112,21 +105,7 @@ int	mapreader(t_game *game, char *file)
 	map_allocater(game);
 	fd = open(file, O_RDONLY);
 	i = read_maprows(row, fd, game);
-	// int a = 0;
-	// int j = 0;
-    // while(a < game->height)
-    // {
-    //     while(j < game->width)
-    //     {
-    //         printf("%c", game->map[a][j]);
-    //         j++;
-    //     }
-    //     j = 0;
-    //     a++;
-    //     printf("\n");
-    // }
-	// printf("after\n");
-	// filling_space(game);
+	filling_space(game);
 	free(row);
 	close(fd);
 	game->map[i] = NULL;

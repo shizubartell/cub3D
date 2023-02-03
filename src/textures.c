@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 15:04:30 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/01 14:15:48 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/02 10:45:44 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,28 @@ int	check_textures(t_game *game)
 	return (1);
 }
 
+//skips spaces and trims to return the right texture
+static char	*texture_from_dot(char *line)
+{
+	int	i;
+
+	i = 0;
+	while(line[i] != '.')
+		i++;
+	return(ft_strtrim(&line[i], "\n"));
+}
+
 //puts textuers in the game structure
 int	fill_texture(t_game *game, char *line)
 {
 	if (line[0] == 'N' && line[1] == 'O')
-		game->n_texture = ft_strtrim(&line[3], "\n");
+		game->n_texture = texture_from_dot(line);
 	else if (line[0] == 'S' && line[1] == 'O')
-		game->s_texture = ft_strtrim(&line[3], "\n");
+		game->s_texture = texture_from_dot(line);
 	else if (line[0] == 'W' && line[1] == 'E')
-		game->w_texture = ft_strtrim(&line[3], "\n");
+		game->w_texture = texture_from_dot(line);
 	else if (line[0] == 'E' && line[1] == 'A')
-		game->e_texture = ft_strtrim(&line[3], "\n");
+		game->e_texture = texture_from_dot(line);
 	else if (line[0] == 'F')
 		game->floor_rgb = ft_strtrim(&line[2], "\n");
 	else if (line[0] == 'C')
@@ -62,20 +73,14 @@ int	read_textures(t_game *game, char *map_file)
 	if (fd == -1)
 		return (errorhandler(3));
 	line = get_next_line(fd);
-	while (line != 0)
+	while (line)
 	{
-		if (!fill_texture(game, line))
-			break ;
-		line = get_next_line(fd);
-	}
-	line = get_next_line(fd);
-	while (line != 0)
-	{
-		if (!fill_texture(game, line))
-			break ;
+		fill_texture(game, line);
 		line = get_next_line(fd);
 	}
 	free(line);
 	close(fd);
+	if (!check_textures(game))
+		errorhandler(4);
 	return (1);
 }

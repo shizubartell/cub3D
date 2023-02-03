@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 11:11:24 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/01 16:36:02 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/03 09:56:29 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../inc/cub3D.h"
+
 
 //calculates the width and the height of the map and 
 //puts them in the game structure
@@ -24,10 +25,11 @@ void	get_width_height(t_game *game, char *map)
 	i = 0;
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
-	while (i++ < 8)
+	while (!is_beggining_of_map(line))
 	{
 		line = get_next_line(fd);
-	}	
+		game->row_beggining_of_map++;
+	}
 	trimmed_line = ft_strtrim(line, "\n");
 	game->width = (int)ft_strlen(trimmed_line);
 	while (line != 0)
@@ -43,18 +45,7 @@ void	get_width_height(t_game *game, char *map)
 	close(fd);
 }
 
-//checks if the extension is valid
-int	valid_extension(char *path)
-{
-	int	length;
 
-	length = ft_strlen(path);
-	if (ft_strnstr(path + length - 4, ".cub", 4) == 0)
-	{
-		return (errorhandler(1));
-	}
-	return (0);
-}
 
 //game initialisation
 t_game	*init_game(char *map)
@@ -70,13 +61,39 @@ t_game	*init_game(char *map)
 	game->e_texture = 0;
 	game->ceiling_rgb = 0;
 	game->floor_rgb = 0;
+	game->row_beggining_of_map = 0;
 	return (game);
+}
+
+void printing_things(t_game *game)
+{
+	printf("N: %s\n", game->n_texture);
+	printf("S: %s\n", game->s_texture);
+	printf("W: %s\n", game->w_texture);
+	printf("E: %s\n", game->e_texture);
+	printf("floor: %s\n", game->floor_rgb);
+	printf("ceiling: %s\n", game->ceiling_rgb);
+	printf("widht: %d\n", game->width);
+	printf("height: %d\n", game->height);
+	printf("beginning of the map: %d\n", game->row_beggining_of_map);
+	int i = 0;
+	int j = 0;
+    while(i < game->height)
+    {
+        while(j < game->width)
+        {
+            printf("%c", game->map[i][j]);
+            j++;
+        }
+        j = 0;
+        i++;
+        printf("\n");
+    }
 }
 
 int	main(int argc, char **argv)
 {
 	t_game 	*game;
-	int		i = 0;
 
 	if (argc != 2)
 		return (errorhandler(2));
@@ -84,25 +101,8 @@ int	main(int argc, char **argv)
 	game = init_game(argv[1]);
 	get_width_height(game, argv[1]);
 	read_textures(game, argv[1]);
-	// printf("N: %s\n", game->n_texture);
-	// printf("S: %s\n", game->s_texture);
-	// printf("W: %s\n", game->w_texture);
-	// printf("E: %s\n", game->e_texture);
-	// printf("floor: %s\n", game->floor_rgb);
-	// printf("ceiling: %s\n", game->ceiling_rgb);
-	// printf("widht: %d\n", game->width);
-	// printf("height: %d\n", game->height);
 	mapreader(game, argv[1]);
-	// int j = 0;
-    // while(i < game->height)
-    // {
-    //     while(j < game->width)
-    //     {
-    //         printf("%c", game->map[i][j]);
-    //         j++;
-    //     }
-    //     j = 0;
-    //     i++;
-    //     printf("\n");
-    // }
+	check_map_borders(game);
+	check_map_letters(game);
+	printing_things(game);
 }

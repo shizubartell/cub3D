@@ -6,7 +6,7 @@
 /*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 12:33:11 by abartell          #+#    #+#             */
-/*   Updated: 2023/01/31 12:52:58 by iczarnie         ###   ########.fr       */
+/*   Updated: 2023/02/02 11:01:17 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ int	errorhandler(int i)
 	else if (i == 3)
 		ft_putstr_fd("Error filedescriptor\n", 2);
 	else if (i == 4)
+		ft_putstr_fd("No texture in map\n", 2);	
+	else if (i == 5)
+		ft_putstr_fd("Wrong letter in map\n", 2);
+	else if (i == 6)
+		ft_putstr_fd("Wrong border of the map\n", 2);
+	else if (i == 7)
 		ft_putstr_fd("ERROR\n", 2);	
 	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 10:43:49 by abartell          #+#    #+#              #
-#    Updated: 2023/02/03 10:45:29 by abartell         ###   ########.fr        #
+#    Updated: 2023/02/03 12:37:10 by abartell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,9 @@ SRC_FILES					:=	main.c \
 								errors.c \
 								textures.c \
 								read_map.c \
-								checks.c
+								checks.c \
+								floor_ceilling_colours.c \
+								mlx_and_hooks.c
 
 OBJ_FILES					:= ${SRC_FILES:.c=.o}
 SRC							:= $(addprefix $(SRC_DIR), $(SRC_FILES))
@@ -67,7 +69,7 @@ $(NAME): $(OBJ)
 	make -C $(LIBFT_DIR)
 	echo "make $(GET_NEXT_LINE_DIR)"
 	make -C $(GET_NEXT_LINE_DIR)
-	$(CC) $(OBJ) $(MLX_A) $(LIBFT_A) $(GET_NEXT_LINE_A) -l mlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJ) $(MLX_A) $(LIBFT_A) $(GET_NEXT_LINE_A) -framework OpenGL -framework AppKit -o $(NAME)
 	echo "$(BLUE)$(NAME) compiled and ready to play! :D$(END_COLOR)"
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c

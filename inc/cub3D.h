@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:59:32 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/02 10:56:41 by iczarnie         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:37:47 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,18 @@
 typedef struct game
 {
 	char **map;
+    void    *mlx;
+    void    *window;
     int width;
     int height;
     char    *n_texture;
     char    *s_texture;
     char    *w_texture;
     char    *e_texture;
-    char    *floor_rgb;
-    char    *ceiling_rgb;
+    char    *floor_colour;
+    char    *ceilling_colour;
+    int     floor_rgb;
+    int     ceilling_rgb;
     int     row_beggining_of_map;
 }	t_game;
 
@@ -88,4 +92,14 @@ int	valid_extension(char *path);
 int check_map_letters(t_game *game);
 int check_map_borders(t_game *game);
 
+//*********************************************************//
+//**         FLOOR_CEILLING_COLOURS.C                   **//
+int check_colours(t_game *game);
+
+//*********************************************************//
+//**         MLX_AND_HOOKS.C                            **//
+
+void    init_mlx(t_game *game);
+int ft_closing(t_game *game);
+int key_setup(int keys, t_game *window);
 #endif

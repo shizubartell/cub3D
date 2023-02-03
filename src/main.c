@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 11:11:24 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/03 09:56:29 by iczarnie         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:40:55 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ t_game	*init_game(char *map)
 	game->s_texture = 0;
 	game->w_texture = 0;
 	game->e_texture = 0;
-	game->ceiling_rgb = 0;
+	game->ceilling_colour = 0;
+	game->floor_colour = 0;
+	game->ceilling_rgb = 0;
 	game->floor_rgb = 0;
 	game->row_beggining_of_map = 0;
 	return (game);
@@ -71,8 +73,10 @@ void printing_things(t_game *game)
 	printf("S: %s\n", game->s_texture);
 	printf("W: %s\n", game->w_texture);
 	printf("E: %s\n", game->e_texture);
-	printf("floor: %s\n", game->floor_rgb);
-	printf("ceiling: %s\n", game->ceiling_rgb);
+	printf("floor: %s\n", game->floor_colour);
+	printf("ceiling: %s\n", game->ceilling_colour);
+	printf("floor parsed: %d\n", game->floor_rgb);
+	printf("ceiling parsed: %d\n", game->ceilling_rgb);
 	printf("widht: %d\n", game->width);
 	printf("height: %d\n", game->height);
 	printf("beginning of the map: %d\n", game->row_beggining_of_map);
@@ -99,10 +103,13 @@ int	main(int argc, char **argv)
 		return (errorhandler(2));
 	valid_extension(argv[1]);
 	game = init_game(argv[1]);
+	init_mlx(game);
 	get_width_height(game, argv[1]);
 	read_textures(game, argv[1]);
 	mapreader(game, argv[1]);
 	check_map_borders(game);
 	check_map_letters(game);
+	check_colours(game);
+	mlx_loop(game);
 	printing_things(game);
 }

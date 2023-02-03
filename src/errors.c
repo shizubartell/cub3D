@@ -6,7 +6,7 @@
 /*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 12:33:11 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/02 11:01:17 by iczarnie         ###   ########.fr       */
+/*   Updated: 2023/02/03 11:38:04 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ int	errorhandler(int i)
 	else if (i == 6)
 		ft_putstr_fd("Wrong border of the map\n", 2);
 	else if (i == 7)
-		ft_putstr_fd("ERROR\n", 2);	
+		ft_putstr_fd("Wrong colour\n", 2);
+	else if (i == 8)
+		ft_putstr_fd("Wrong character in colour\n", 2);		
+	else if (i == 9)
+		ft_putstr_fd("ERROR\n", 2);		
 	return (1);
 }
 

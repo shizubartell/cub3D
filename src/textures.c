@@ -6,7 +6,7 @@
 /*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 15:04:30 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/02 10:45:44 by iczarnie         ###   ########.fr       */
+/*   Updated: 2023/02/03 11:44:57 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	check_textures(t_game *game)
 		return (0);
 	if (!game->e_texture)
 		return (0);
-	if (!game->floor_rgb)
+	if (!game->floor_colour)
 		return (0);
-	if (!game->ceiling_rgb)
+	if (!game->ceilling_colour)
 		return (0);
 	return (1);
 }
@@ -37,6 +37,18 @@ static char	*texture_from_dot(char *line)
 
 	i = 0;
 	while(line[i] != '.')
+		i++;
+	return(ft_strtrim(&line[i], "\n"));
+}
+
+//strips rgb for floor and ceilling from unnecessary characters
+//and spaces
+static char	*rgb_skip_spaces(char *line)
+{
+	int	i;
+
+	i = 0;
+	while(line[i] == ' ' || line[i] == 'F' || line[i] == 'C')
 		i++;
 	return(ft_strtrim(&line[i], "\n"));
 }
@@ -53,9 +65,9 @@ int	fill_texture(t_game *game, char *line)
 	else if (line[0] == 'E' && line[1] == 'A')
 		game->e_texture = texture_from_dot(line);
 	else if (line[0] == 'F')
-		game->floor_rgb = ft_strtrim(&line[2], "\n");
+		game->floor_colour = rgb_skip_spaces(line);
 	else if (line[0] == 'C')
-		game->ceiling_rgb = ft_strtrim(&line[2], "\n");
+		game->ceilling_colour = rgb_skip_spaces(line);
 	else
 		return (0);
 	return (1);

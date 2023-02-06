@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:09:33 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/06 18:42:36 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/06 19:04:08 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ void    pixeldrawer(t_game *game)
         x = 0;
         while (x++ < WWIDTH)
         {
-            mlx_pixels(game, x, y, game->ceilling_rgb);
-        }
+			if (y < 720)
+            	mlx_pixels(game, x, y, game->ceilling_rgb);
+			else
+				mlx_pixels(game, x, y, game->floor_colour);
+        }	
         y++;
     }   
     mlx_put_image_to_window(game->mlx, game->window, game->data.img, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:59:32 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/06 18:14:57 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/06 18:40:40 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 //*********************************************************//
 //**                DEFINES                             **//
 
+# define WWIDTH 1440
+# define WHEIGHT 990
 # define W 13
 # define A 0
 # define S 1
@@ -40,6 +42,15 @@
 
 //*********************************************************//
 //**                STRUCTURES                          **//
+
+typedef struct  data
+{
+    void    *img;
+    char    *addr;
+    int     bits_pp;
+    int     line_length;
+    int     endian;
+}   t_data;
 
 typedef struct game
 {
@@ -57,6 +68,7 @@ typedef struct game
     int     floor_rgb;
     int     ceilling_rgb;
     int     row_beggining_of_map;
+    t_data  data;
 }	t_game;
 
 //*********************************************************//
@@ -102,4 +114,8 @@ int check_colours(t_game *game);
 void    init_mlx(t_game *game);
 int ft_closing(int key, t_game *game);
 int key_setup(int keys, t_game *window);
+
+void    mlx_pixels(t_game *game, int x, int y, int colour);
+void    pixeldrawer(t_game *game);
+
 #endif

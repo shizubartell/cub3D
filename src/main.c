@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 11:11:24 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/03 12:40:55 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/06 18:22:18 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ int	main(int argc, char **argv)
 	check_map_borders(game);
 	check_map_letters(game);
 	check_colours(game);
-	mlx_loop(game);
 	printing_things(game);
+	mlx_hook(game->window, 17, 0, ft_closing, game);
+	mlx_key_hook(game->window, ft_closing, game);
+	mlx_loop(game->mlx);
 }

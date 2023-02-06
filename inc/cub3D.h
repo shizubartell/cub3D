@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:59:32 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/03 12:37:47 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/06 18:14:57 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,6 @@ int check_colours(t_game *game);
 //**         MLX_AND_HOOKS.C                            **//
 
 void    init_mlx(t_game *game);
-int ft_closing(t_game *game);
+int ft_closing(int key, t_game *game);
 int key_setup(int keys, t_game *window);
 #endif

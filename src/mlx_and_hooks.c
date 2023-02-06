@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:30:47 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/03 12:00:52 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/06 18:24:04 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,34 @@
 void    init_mlx(t_game *game)
 {
     game->mlx = mlx_init();
-    game->window =mlx_new_window(game->mlx, 1440, 990, "Otter 3D");
+    game->window = mlx_new_window(game->mlx, 1440, 990, "Otter 3D");
 }
 
 //closing function for the window
 //EXIT_SUCCESS should prevent leaks
 //as it expands to a different size than 0
-int ft_closing(t_game *game)
+int ft_closing(int key, t_game *game)
 {
-    mlx_destroy_image(game->mlx, game->window);
-    printf("Exiting Otter 3D\n");
-    exit(EXIT_SUCCESS);
+    printf("%d\n", key);
+    if (key == 53)
+    {
+        mlx_destroy_window(game->mlx, game->window);
+        printf("Exiting Otter 3D\n");
+        exit(0);
+    }
     return (0);
 }
 
 //key setup for the used keys in our cub3D
 //might be later moved on to its own .c file
-int key_setup(int keys, t_game *window)
-{
-    if (keys == ESC)
-        ft_closing(window);
-    return (0);
-}
+// int key_setup(int keys, t_game *window)
+// {
+//     if (keys == ESC)
+//         ft_closing(window);
+//     return (0);
+// }
 
-int key_hooks(t_game *game)
-{
-    return (1);
-}
+// int key_hooks(t_game *game)
+// {
+//     return (1);
+// }

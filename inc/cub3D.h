@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:59:32 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/06 18:40:40 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:43:28 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,14 @@ int				errorhandler(int i);
 
 //*********************************************************//
 //**                TEXTURES.C                           **//
+
 int	check_textures(t_game *game);
 int	fill_texture(t_game *game, char *line);
 int	read_textures(t_game *game, char *map_file);
 
 //*********************************************************//
 //**                READ_MAP.C                          **//
+
 char	*fill_map(char *map, char *row);
 void	map_allocater(t_game *game);
 int	    read_maprows(char *row, int fd, t_game *game);
@@ -99,6 +101,7 @@ int	    mapreader(t_game *game, char *file);
 
 //*********************************************************//
 //**                CHECKS.C                          **//
+
 int	is_beggining_of_map(char *line);
 int	valid_extension(char *path);
 int check_map_letters(t_game *game);
@@ -106,16 +109,25 @@ int check_map_borders(t_game *game);
 
 //*********************************************************//
 //**         FLOOR_CEILLING_COLOURS.C                   **//
+
 int check_colours(t_game *game);
 
 //*********************************************************//
 //**         MLX_AND_HOOKS.C                            **//
 
-void    init_mlx(t_game *game);
 int ft_closing(int key, t_game *game);
-int key_setup(int keys, t_game *window);
+int key_setup(int key, t_game *window);
+
+//*********************************************************//
+//**         DISPLAY_COLOUR.C                           **//
 
 void    mlx_pixels(t_game *game, int x, int y, int colour);
 void    pixeldrawer(t_game *game);
+
+//*********************************************************//
+//**         INITIALIZE.C                            **//
+
+void	ft_img_init(t_game *game);
+void    init_mlx(t_game *game);
 
 #endif

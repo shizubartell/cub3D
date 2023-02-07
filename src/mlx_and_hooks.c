@@ -6,20 +6,11 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:30:47 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/06 18:24:04 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:51:41 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
-
-//init mlx window, maye renaming into different
-//struct in the future (using one small struct to
-//call the different structs of the programm)
-void    init_mlx(t_game *game)
-{
-    game->mlx = mlx_init();
-    game->window = mlx_new_window(game->mlx, 1440, 990, "Otter 3D");
-}
 
 //closing function for the window
 //EXIT_SUCCESS should prevent leaks
@@ -38,14 +29,25 @@ int ft_closing(int key, t_game *game)
 
 //key setup for the used keys in our cub3D
 //might be later moved on to its own .c file
-// int key_setup(int keys, t_game *window)
-// {
-//     if (keys == ESC)
-//         ft_closing(window);
-//     return (0);
-// }
+int key_setup(int key, t_game *game)
+{
+    if (key == 53)
+    {
+        mlx_destroy_window(game->mlx, game->window);
+        printf("Exiting Otter 3D\n");
+        exit(0);
+    }
+	// if (key == W)
 
-// int key_hooks(t_game *game)
-// {
-//     return (1);
-// }
+	// if (key == S)
+
+	// if (key == A)
+
+	// if (key == D)
+
+	// if (key == ARR_LEFT)
+
+	// if (key == ARR_RIGHT)
+
+    return (0);
+}

@@ -6,7 +6,7 @@
 #    By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 10:43:49 by abartell          #+#    #+#              #
-#    Updated: 2023/02/06 18:28:40 by abartell         ###   ########.fr        #
+#    Updated: 2023/02/07 17:40:05 by abartell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ SRC_FILES					:=	main.c \
 								checks.c \
 								floor_ceilling_colours.c \
 								mlx_and_hooks.c \
-								display_colour.c
+								display_colour.c \
+								initialize.c
 
 OBJ_FILES					:= ${SRC_FILES:.c=.o}
 SRC							:= $(addprefix $(SRC_DIR), $(SRC_FILES))

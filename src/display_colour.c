@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:09:33 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/06 19:04:08 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:41:42 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void    mlx_pixels(t_game *game, int x, int y, int colour)
 {
     char    *dest;
-    // data->addr = mlx_get_data_addr(data->img, &(data->bits_pp), &(data->line_length), &(data->endian));
+
     dest = game->data.addr + (y * game->data.line_length + x * (game->data.bits_pp / 8));
     *(unsigned int*)dest = colour;
 }
@@ -31,10 +31,10 @@ void    pixeldrawer(t_game *game)
         x = 0;
         while (x++ < WWIDTH)
         {
-			if (y < 720)
+			if (y < WHEIGHT / 2)
             	mlx_pixels(game, x, y, game->ceilling_rgb);
 			else
-				mlx_pixels(game, x, y, game->floor_colour);
+				mlx_pixels(game, x, y, game->floor_rgb);
         }	
         y++;
     }   

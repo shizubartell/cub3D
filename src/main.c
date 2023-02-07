@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 11:11:24 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/06 18:40:52 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:57:25 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,7 @@ int	main(int argc, char **argv)
 	valid_extension(argv[1]);
 	game = init_game(argv[1]);
 	init_mlx(game);
-	game->data.img = mlx_new_image(game->mlx, WWIDTH, WHEIGHT);
-	game->data.addr = mlx_get_data_addr(game->data.img, &game->data.bits_pp, &game->data.line_length,
-								&game->data.endian);
+	ft_img_init(game);
 	get_width_height(game, argv[1]);
 	read_textures(game, argv[1]);
 	mapreader(game, argv[1]);
@@ -123,7 +121,7 @@ int	main(int argc, char **argv)
 	// }
 	// mlx_put_image_to_window(game->mlx, game->window, game->data.img, 0, 0);
 	printing_things(game);
+	mlx_hook(game->window, 2, 0, key_setup, game);
 	mlx_hook(game->window, 17, 0, ft_closing, game);
-	mlx_key_hook(game->window, ft_closing, game);
 	mlx_loop(game->mlx);
 }

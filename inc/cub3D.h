@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:59:32 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/08 11:35:56 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/08 12:19:06 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 //*********************************************************//
 //**                DEFINES                             **//
 
-# define WWIDTH 1440
-# define WHEIGHT 990
+# define WWIDTH 960
+# define WHEIGHT 720
 # define W 13
 # define A 0
 # define S 1

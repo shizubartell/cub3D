@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:37:01 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/07 17:55:48 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/08 12:25:45 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_img_init(t_game *game)
 void    init_mlx(t_game *game)
 {
     game->mlx = mlx_init();
-    game->window = mlx_new_window(game->mlx, 1440, 990, "Otter 3D");
+    game->window = mlx_new_window(game->mlx, WWIDTH, WHEIGHT, "Otter 3D");
 }
 
 t_data *data_init(void)

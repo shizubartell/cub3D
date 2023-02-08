@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 11:11:24 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/08 11:36:17 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:50:08 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ t_game	*init_game(char *map)
 	game->ceilling_rgb = 0;
 	game->floor_rgb = 0;
 	game->row_beggining_of_map = 0;
+	game->screen_w = 1060.0;
+	game->screen_h = 710.0;
 	return (game);
 }
 

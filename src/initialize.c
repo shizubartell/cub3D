@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:37:01 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/08 12:25:45 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:52:11 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 //to properly display the colours and textures
 void	ft_img_init(t_game *game)
 {
-	game->data.img = mlx_new_image(game->mlx, WWIDTH, WHEIGHT);
+	game->data.img = mlx_new_image(game->mlx, game->screen_w, game->screen_h);
 	game->data.addr = mlx_get_data_addr(game->data.img, &game->data.bits_pp, \
 		&game->data.line_length, &game->data.endian);
 }
@@ -27,7 +27,7 @@ void	ft_img_init(t_game *game)
 void    init_mlx(t_game *game)
 {
     game->mlx = mlx_init();
-    game->window = mlx_new_window(game->mlx, WWIDTH, WHEIGHT, "Otter 3D");
+    game->window = mlx_new_window(game->mlx, game->screen_w, game->screen_h, "Otter 3D");
 }
 
 t_data *data_init(void)

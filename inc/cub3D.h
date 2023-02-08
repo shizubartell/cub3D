@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:59:32 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/08 12:19:06 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:50:39 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct game
     void    *window;
     int width;
     int height;
+    double screen_w;
+    double  screen_h;
     int     w;
     int     s;
     int     d;

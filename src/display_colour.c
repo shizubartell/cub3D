@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:09:33 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/07 17:41:42 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:51:36 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void    pixeldrawer(t_game *game)
     int     x;
     
     y = 0;
-    while (y < WHEIGHT)
+    while (y < game->screen_h)
     {
-        x = 0;
-        while (x++ < WWIDTH)
+        x = -1;
+        while (++x < game->screen_w)
         {
-			if (y < WHEIGHT / 2)
+			if (y < game->screen_h / 2)
             	mlx_pixels(game, x, y, game->ceilling_rgb);
 			else
 				mlx_pixels(game, x, y, game->floor_rgb);

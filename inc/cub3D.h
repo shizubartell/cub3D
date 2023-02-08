@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:59:32 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/07 17:43:28 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/08 11:35:56 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,12 @@ typedef struct game
     void    *window;
     int width;
     int height;
+    int     w;
+    int     s;
+    int     d;
+    int     a;
+    int     arrow_l;
+    int     arrow_r;
     char    *n_texture;
     char    *s_texture;
     char    *w_texture;
@@ -116,7 +122,8 @@ int check_colours(t_game *game);
 //**         MLX_AND_HOOKS.C                            **//
 
 int ft_closing(int key, t_game *game);
-int key_setup(int key, t_game *window);
+int key_setup_push(int key, t_game *window);
+int key_setup_nopush(int key, t_game *game);
 
 //*********************************************************//
 //**         DISPLAY_COLOUR.C                           **//

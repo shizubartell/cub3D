@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 11:11:24 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/07 17:57:25 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/08 11:36:17 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,8 @@ int	main(int argc, char **argv)
 	// }
 	// mlx_put_image_to_window(game->mlx, game->window, game->data.img, 0, 0);
 	printing_things(game);
-	mlx_hook(game->window, 2, 0, key_setup, game);
-	mlx_hook(game->window, 17, 0, ft_closing, game);
+	mlx_hook(game->window, 2, 0, key_setup_push, game);
+	mlx_hook(game->window, 3, 0, key_setup_nopush, game);
+	// mlx_hook(game->window, 17, 0, ft_closing, game);
 	mlx_loop(game->mlx);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 11:11:24 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/08 13:50:08 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/10 10:44:17 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,30 +43,6 @@ void	get_width_height(t_game *game, char *map)
 	free(trimmed_line);
 	free(line);
 	close(fd);
-}
-
-
-
-//game initialisation
-t_game	*init_game(char *map)
-{
-	t_game	*game;
-
-	game = malloc(sizeof(t_game));
-	game->width = 0;
-	game->height = 0;
-	game->n_texture = 0;
-	game->s_texture = 0;
-	game->w_texture = 0;
-	game->e_texture = 0;
-	game->ceilling_colour = 0;
-	game->floor_colour = 0;
-	game->ceilling_rgb = 0;
-	game->floor_rgb = 0;
-	game->row_beggining_of_map = 0;
-	game->screen_w = 1060.0;
-	game->screen_h = 710.0;
-	return (game);
 }
 
 void printing_things(t_game *game)
@@ -112,16 +88,10 @@ int	main(int argc, char **argv)
 	mapreader(game, argv[1]);
 	check_map_borders(game);
 	check_map_letters(game);
+	if(player_check(game) == 0)
+		printf("Wrong number of players");
 	check_colours(game);
 	pixeldrawer(game);
-	// for (int y = 0; y < 100; y++)
-	// {
-	// 	for (int x = 0; x < 100; x++)
-	// 	{
-	// 		mlx_pixels(game, x, y, 0xffffff);
-	// 	}
-	// }
-	// mlx_put_image_to_window(game->mlx, game->window, game->data.img, 0, 0);
 	printing_things(game);
 	mlx_hook(game->window, 2, 0, key_setup_push, game);
 	mlx_hook(game->window, 3, 0, key_setup_nopush, game);

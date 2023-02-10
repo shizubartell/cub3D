@@ -6,7 +6,7 @@
 /*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 08:34:46 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/02 09:51:21 by iczarnie         ###   ########.fr       */
+/*   Updated: 2023/02/10 10:49:36 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,12 @@ int	read_maprows(char *row, int fd, t_game *game)
 	row = get_next_line(fd);
 	while (i++ < game->row_beggining_of_map)
 	{
-        // printf("row: %s\n", row);
 		row = get_next_line(fd);
 	}
 	i = 0;
 	while (row != 0)
 	{
 		game->map[i] = fill_map(game->map[i], row);
-        // printf("map: %s\n", game->map[i]);
 		i++;
 		row = get_next_line(fd);
 	}

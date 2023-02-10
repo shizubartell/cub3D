@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:59:32 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/08 13:50:39 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/10 10:42:00 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@ typedef struct game
     int     floor_rgb;
     int     ceilling_rgb;
     int     row_beggining_of_map;
+    double		pl_x;
+	double		pl_y;
+	double		pl_dx;
+	double		pl_dy;
+	double		p_angle;
+	double		fov;
     t_data  data;
 }	t_game;
 
@@ -138,5 +144,28 @@ void    pixeldrawer(t_game *game);
 
 void	ft_img_init(t_game *game);
 void    init_mlx(t_game *game);
+t_game	*init_game(char *map);
+void    init_for_moves(t_game *game);
+
+//*********************************************************//
+//**         MOVE.C                            **//
+
+double	deg_to_rad(double deg);
+void	rotation(t_game *game, double dir);
+void	moving(t_game	*game, double move_x, double move_y);
+int	    deal_key(t_game *game);
+
+//*********************************************************//
+//**         PLAYER_INIT.C                            **//
+int	player_check(t_game *game);
+
+//*********************************************************//
+//**         INITIALIZE.C                            **//
+
+void	ft_img_init(t_game *game);
+void    init_mlx(t_game *game);
+t_game	*init_game(char *map);
+void    init_for_moves(t_game *game);
+
 
 #endif

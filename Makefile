@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+         #
+#    By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 10:43:49 by abartell          #+#    #+#              #
-#    Updated: 2023/02/07 17:40:05 by abartell         ###   ########.fr        #
+#    Updated: 2023/02/10 10:42:22 by iczarnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,9 @@ SRC_FILES					:=	main.c \
 								floor_ceilling_colours.c \
 								mlx_and_hooks.c \
 								display_colour.c \
-								initialize.c
+								initialize.c \
+								move.c \
+								player_init.c
 
 OBJ_FILES					:= ${SRC_FILES:.c=.o}
 SRC							:= $(addprefix $(SRC_DIR), $(SRC_FILES))

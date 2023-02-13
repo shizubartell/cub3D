@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+         #
+#    By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 10:43:49 by abartell          #+#    #+#              #
-#    Updated: 2023/02/10 10:42:22 by iczarnie         ###   ########.fr        #
+#    Updated: 2023/02/13 15:23:29 by abartell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,9 @@ SRC_FILES					:=	main.c \
 								display_colour.c \
 								initialize.c \
 								move.c \
-								player_init.c
+								player_init.c \
+								init_texture.c \
+								raycasting.c
 
 OBJ_FILES					:= ${SRC_FILES:.c=.o}
 SRC							:= $(addprefix $(SRC_DIR), $(SRC_FILES))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:59:32 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/10 10:42:00 by iczarnie         ###   ########.fr       */
+/*   Updated: 2023/02/13 15:32:22 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,17 @@ typedef struct  data
     int     endian;
 }   t_data;
 
+typedef struct  texdata
+{
+    void    *img;
+    char    *addr;
+    int     bits_pp;
+    int     line_length;
+    int     endian;
+    int     w;
+    int     h;
+}   t_texdata;
+
 typedef struct game
 {
 	char **map;
@@ -67,6 +78,12 @@ typedef struct game
     int     a;
     int     arrow_l;
     int     arrow_r;
+    int     txt_pos_y;
+    int     txt_pos_x;
+    int     text_n;
+    int     text_e;
+    int     text_s;
+    int     text_w;
     char    *n_texture;
     char    *s_texture;
     char    *w_texture;
@@ -82,7 +99,10 @@ typedef struct game
 	double		pl_dy;
 	double		p_angle;
 	double		fov;
+    int         prec_ray;
+    double      incr_angle;
     t_data  data;
+    t_data  texdata;
 }	t_game;
 
 //*********************************************************//
@@ -137,6 +157,7 @@ int key_setup_nopush(int key, t_game *game);
 //**         DISPLAY_COLOUR.C                           **//
 
 void    mlx_pixels(t_game *game, int x, int y, int colour);
+int     text_pixels(int x, int y, t_game *game);
 void    pixeldrawer(t_game *game);
 
 //*********************************************************//
@@ -156,16 +177,18 @@ void	moving(t_game	*game, double move_x, double move_y);
 int	    deal_key(t_game *game);
 
 //*********************************************************//
-//**         PLAYER_INIT.C                            **//
+//**         PLAYER_INIT.C                              **//
+
 int	player_check(t_game *game);
 
 //*********************************************************//
-//**         INITIALIZE.C                            **//
+//**         RAYCASTING.C                               **//
 
-void	ft_img_init(t_game *game);
-void    init_mlx(t_game *game);
-t_game	*init_game(char *map);
-void    init_for_moves(t_game *game);
+double	calc_modulo(double a, double b);
+void calculate_rays(t_game *game, double angle_ray, double rays[2], double *cosray, double *ray_sin);
+void	raycaster(t_game *game);
 
+void    init_text(t_game *game);
+t_data  *xpm_to_text(t_game *game, char *texture);
 
 #endif

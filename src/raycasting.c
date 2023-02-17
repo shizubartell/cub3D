@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:28:27 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/13 15:33:07 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/17 14:30:41 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,38 @@ double	calc_modulo(double a, double b)
 	return (mod);
 }
 
+void	get_distance(t_game *game, double *rays, double ray_angle)
+{
+	double	distance;
+
+	distance = sqrt(pow(game->pl_x - rays[0], 2)
+			+ pow(game->pl_y - rays[1], 2));
+	distance = distance * cos(deg_to_rad(ray_angle - game->p_angle));
+	game->save_dist = distance;
+	if (distance < 1)
+		distance = 1;
+	game->wall_h = (int)(game->screen_h / 2 / distance);
+}
+
+int orientation(t_game *game, double angle_ray, double *rays)
+{
+	int	dx;
+	int	dy;
+
+	dx = rays[0] - cos(deg_to_rad(angle_ray)) / game->prec_ray;
+	dy = rays[1] - sin(deg_to_rad(angle_ray)) / game->prec_ray;
+	if (dy == (int)rays[1] && dx < (int)rays[0])
+		return (1);
+	else if (dy == (int)rays[1] && dx > (int)rays[0])
+		return (2);
+	else if (dx == (int)rays[0] && dy < (int)rays[1])
+		return (3);
+	else if (dx == (int)rays[0] && dy > (int)rays[1])
+		return (4);
+	return (5);
+}
+
+
 //main for raycasting in our game
 //we initialize a rays array to store the x and y position
 //of the player, cosray and sinray store the proper cosine and sine
@@ -51,52 +83,47 @@ double	calc_modulo(double a, double b)
 //the other while loop casts the ray and checks if it hits an object (texture)
 //on the game map and goes on as long as it doesnt hit an object, updating the
 //ray position and adding cosray and sinray to x and y of the rays array.
-//this function is too long and will be split into 2 functions
 // void	raycaster(t_game *game)
 // {
-// 	double	angle_ray;
+// 	double	raya_cos_sin[3];
 // 	double	rays[2];
-// 	double	cosray;
-// 	double	sinray;
 // 	int		raycounter;
 
 // 	raycounter = 0;
-// 	angle_ray = game->p_angle - game->fov / 2;
+// 	raya_cos_sin[0] = game->p_angle - game->fov / 2;
 // 	while (raycounter < game->screen_w)
 // 	{
 // 		rays[0] = game->pl_x;
 // 		rays[1] = game->pl_y;
-// 		cosray = cos(deg_to_rad(angle_ray)) / game->prec_ray;
-// 		sinray = sin(deg_to_rad(angle_ray)) / game->prec_ray;
+// 		raya_cos_sin[1] = cos(deg_to_rad(raya_cos_sin[0])) / game->prec_ray;
+// 		raya_cos_sin[2] = sin(deg_to_rad(raya_cos_sin[0])) / game->prec_ray;
 // 		while (game->map[(int)rays[1]][(int)rays[0]] != '1')
 // 		{
-// 			rays[0] = rays[0] + cosray;
-// 			rays[1] = rays[1] + sinray;
+// 			rays[0] = rays[0] + raya_cos_sin[1];
+// 			rays[1] = rays[1] + raya_cos_sin[2];
 // 		}
-// 		//distance_function
+// 		get_distance(game, rays, raya_cos_sin[0]);
 // 		game->txt_pos_x = calc_modulo((64.0 * (rays[0] + rays[1])), 64.0);
 // 		pixeldrawer(game);
-// 		//this function needs to be reworked to be able to 
-// 		//return according to the direction the player looks at the
-// 		//texture its supposed to display
-// 		angle_ray = angle_ray + game->incr_angle;
+// 		raya_cos_sin[0] = raya_cos_sin[0] + game->incr_angle;
 // 		raycounter++;
 // 	}
 // 	mlx_put_image_to_window(game->mlx, game->window, game->data.img, 0, 0);
 // }
 
-void calculate_rays(t_game *game, double angle_ray, double rays[2], double *cosray, double *ray_sin)
+
+void calculate_rays(t_game *game, double angle_ray, double rays[2], double cossinray[2])
 {
 	rays[0] = game->pl_x;
 	rays[1] = game->pl_y;
-	*cosray = cos(deg_to_rad(angle_ray)) / game->prec_ray;
-	*ray_sin = sin(deg_to_rad(angle_ray)) / game->prec_ray;
+	cossinray[0] = cos(deg_to_rad(angle_ray)) / game->prec_ray;
+	cossinray[1] = sin(deg_to_rad(angle_ray)) / game->prec_ray;
 	while (game->map[(int)rays[1]][(int)rays[0]] != '1')
 	{
-		rays[0] = rays[0] + *cosray;
-		rays[1] = rays[1] + *ray_sin;
+		rays[0] = rays[0] + cossinray[0];
+		rays[1] = rays[1] + cossinray[1];
 	}
-    //distance function
+    get_distance(game, rays, angle_ray);
 	game->txt_pos_x = calc_modulo((64.0 * (rays[0] + rays[1])), 64.0);
 }
 
@@ -104,21 +131,17 @@ void	raycaster(t_game *game)
 {
 	double	angle_ray;
 	double	rays[2];
-	double	cosray;
-	double	ray_sin;
+	double	cossinray[2];
 	int		raycounter;
 
 	raycounter = 0;
 	angle_ray = game->p_angle - game->fov / 2;
 	while (raycounter < game->screen_w)
 	{
-		calculate_rays(game, angle_ray, rays, &cosray, &ray_sin);
-		pixeldrawer(game);
-		//this function needs to be reworked to be able to 
-		//return according to the direction the player looks at the
-		//texture its supposed to display
+		calculate_rays(game, angle_ray, rays, cossinray);
+		pixeldrawer(game, raycounter, orientation(game, angle_ray, rays));
 		angle_ray = angle_ray + game->incr_angle;
 		raycounter++;
 	}
-	mlx_put_image_to_window(game->mlx, game->window, game->data.img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->window, game->data->img, 0, 0);
 }

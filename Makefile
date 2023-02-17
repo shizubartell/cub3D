@@ -6,7 +6,7 @@
 #    By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 10:43:49 by abartell          #+#    #+#              #
-#    Updated: 2023/02/13 15:23:29 by abartell         ###   ########.fr        #
+#    Updated: 2023/02/15 16:16:16 by abartell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ $(NAME): $(OBJ)
 	make -C $(LIBFT_DIR)
 	echo "make $(GET_NEXT_LINE_DIR)"
 	make -C $(GET_NEXT_LINE_DIR)
-	$(CC) $(OBJ) $(MLX_A) $(LIBFT_A) $(GET_NEXT_LINE_A) -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJ) $(MLX_A) $(LIBFT_A) $(GET_NEXT_LINE_A) -fsanitize=address -framework OpenGL -framework AppKit -o $(NAME)
 	echo "$(BLUE)$(NAME) compiled and ready to play! :D$(END_COLOR)"
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c

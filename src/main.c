@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 11:11:24 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/10 10:44:17 by iczarnie         ###   ########.fr       */
+/*   Updated: 2023/02/17 14:48:56 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,13 @@ int	main(int argc, char **argv)
 		return (errorhandler(2));
 	valid_extension(argv[1]);
 	game = init_game(argv[1]);
-	init_mlx(game);
+	game->mlx = mlx_init();
+    game->window = mlx_new_window(game->mlx, game->screen_w, game->screen_h, "Otter 3D");
+	game->data = init_data();
+	// data_init(&(game->data));
+	// init_mlx(game);
 	ft_img_init(game);
+	init_text(game);
 	get_width_height(game, argv[1]);
 	read_textures(game, argv[1]);
 	mapreader(game, argv[1]);
@@ -91,10 +96,10 @@ int	main(int argc, char **argv)
 	if(player_check(game) == 0)
 		printf("Wrong number of players");
 	check_colours(game);
-	pixeldrawer(game);
+	// pixeldrawer(game);
 	printing_things(game);
 	mlx_hook(game->window, 2, 0, key_setup_push, game);
 	mlx_hook(game->window, 3, 0, key_setup_nopush, game);
-	// mlx_hook(game->window, 17, 0, ft_closing, game);
+	mlx_loop_hook(game->mlx, key_ray_loop, game);
 	mlx_loop(game->mlx);
 }

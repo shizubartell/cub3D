@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:59:32 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/18 15:12:15 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:21:41 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,6 @@ typedef struct game
     int     txt_pos_y;
     int     txt_pos_x;
     int     wall_h;
-    // int     text_n;
-    // int     text_e;
-    // int     text_s;
-    // int     text_w;
     char    *n_texture;
     char    *s_texture;
     char    *w_texture;
@@ -116,12 +112,42 @@ typedef struct game
 //*******************************************************//
 
 //*********************************************************//
+//**                CHECKS.C                            **//
+
+int	is_beggining_of_map(char *line);
+int	valid_extension(char *path);
+int check_map_letters(t_game *game);
+int check_map_borders(t_game *game);
+
+//*********************************************************//
+//**         DISPLAY_COLOUR.C                           **//
+
+void    mlx_pixels(t_game *game, int x, int y, int colour);
+int     text_pixels(int x, int y, t_texdata *game);
+void	pixeldrawer(t_game *game, int x, int direction);
+
+//*********************************************************//
 //**                ERRORS.C                            **//
 
 int				errorhandler(int i);
+int             dead_end(char *str);
+
+//*********************************************************//
+//**         FLOOR_CEILLING_COLOURS.C                   **//
+
+int check_colours(t_game *game);
+
+//*********************************************************//
+//**         INIT_TEXTURE.C                             **//
+
+void    init_text(t_game *game);
+t_texdata  *xpm_to_text(t_game *game, char *texture);
+int	deal_loop(t_game *game);
 
 //*********************************************************//
 //**                MAIN.C                              **//
+
+void	print_map(t_game *game);
 
 //*********************************************************//
 //**                TEXTURES.C                           **//
@@ -140,31 +166,11 @@ void	filling_space(t_game *game);
 int	    mapreader(t_game *game, char *file);
 
 //*********************************************************//
-//**                CHECKS.C                          **//
-
-int	is_beggining_of_map(char *line);
-int	valid_extension(char *path);
-int check_map_letters(t_game *game);
-int check_map_borders(t_game *game);
-
-//*********************************************************//
-//**         FLOOR_CEILLING_COLOURS.C                   **//
-
-int check_colours(t_game *game);
-
-//*********************************************************//
 //**         MLX_AND_HOOKS.C                            **//
 
 int ft_closing(int key, t_game *game);
 int key_setup_push(int key, t_game *window);
 int key_setup_nopush(int key, t_game *game);
-
-//*********************************************************//
-//**         DISPLAY_COLOUR.C                           **//
-
-void    mlx_pixels(t_game *game, int x, int y, int colour);
-int     text_pixels(int x, int y, t_texdata *game);
-void	pixeldrawer(t_game *game, int x, int direction);
 
 //*********************************************************//
 //**         INITIALIZE.C                            **//
@@ -193,9 +199,6 @@ int	player_check(t_game *game);
 double	calc_modulo(double a, double b);
 void calculate_rays(t_game *game, double angle_ray, double rays[2], double *cosray, double *ray_sin);
 void	raycaster(t_game *game);
-void    init_text(t_game *game);
-t_texdata  *xpm_to_text(t_game *game, char *texture);
-int	deal_loop(t_game *game);
 void	get_text_start(t_game *game, double *y_incrementer, double save_dist, int *y_text);
 
 #endif

@@ -6,12 +6,11 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 11:11:24 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/18 13:41:53 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:57:17 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../inc/cub3D.h"
-
 
 //calculates the width and the height of the map and 
 //puts them in the game structure
@@ -45,8 +44,31 @@ void	get_width_height(t_game *game, char *map)
 	close(fd);
 }
 
-void printing_things(t_game *game)
+void	print_map(t_game *game)
 {
+	int	i;
+	int	j;
+	
+	i = 0;
+	j = 0;
+	while (i < game->height)
+	{
+		while (j < game->width)
+		{
+			printf("%c", game->map[i][j]);
+			j++;
+		}
+		j = 0;
+		i++;
+		printf("\n");
+	}
+}
+
+void	printing_things(t_game *game)
+{
+	// int	i;
+	// int	j;
+
 	printf("N: %s\n", game->n_texture);
 	printf("S: %s\n", game->s_texture);
 	printf("W: %s\n", game->w_texture);
@@ -58,27 +80,28 @@ void printing_things(t_game *game)
 	printf("widht: %d\n", game->width);
 	printf("height: %d\n", game->height);
 	printf("beginning of the map: %d\n", game->row_beggining_of_map);
-	int i = 0;
-	int j = 0;
-    while(i < game->height)
-    {
-        while(j < game->width)
-        {
-            printf("%c", game->map[i][j]);
-            j++;
-        }
-        j = 0;
-        i++;
-        printf("\n");
-    }
+	print_map(game);
+	// i = 0;
+	// j = 0;
+	// while (i < game->height)
+	// {
+	// 	while (j < game->width)
+	// 	{
+	// 		printf("%c", game->map[i][j]);
+	// 		j++;
+	// 	}
+	// 	j = 0;
+	// 	i++;
+	// 	printf("\n");
+	// }
 }
 
 int	main(int argc, char **argv)
 {
-	t_game 	*game;
+	t_game	*game;
 
 	if (argc != 2)
-		return (errorhandler(2));
+		dead_end("Wrong number of arguments!\n");
 	valid_extension(argv[1]);
 	game = init_game(argv[1]);
 	init_mlx(game);
@@ -87,23 +110,17 @@ int	main(int argc, char **argv)
 	mapreader(game, argv[1]);
 	check_map_borders(game);
 	check_map_letters(game);
-	if(player_check(game) == 0)
-		printf("Wrong number of players");
+	if (!player_check(game))
+		dead_end("Wrong number of players!\n");
+	// if (player_check(game) == 0)
+	// 	printf("Wrong number of players\n");
 	ft_img_init(game);
 	init_text(game);
-	// get_width_height(game, argv[1]);
-	// read_textures(game, argv[1]);
-	// mapreader(game, argv[1]);
-	// check_map_borders(game);
-	// check_map_letters(game);
-	// if(player_check(game) == 0)
-	// 	printf("Wrong number of players");
 	check_colours(game);
-	// pixeldrawer(game);
 	printing_things(game);
 	mlx_hook(game->window, 2, 0, key_setup_push, game);
+	mlx_hook(game->window, 17, 0, dead_end, 0);
 	mlx_hook(game->window, 3, 0, key_setup_nopush, game);
 	mlx_loop_hook(game->mlx, deal_loop, game);
-	// mlx_hook(game->window, 17, 0, ft_closing, game);
 	mlx_loop(game->mlx);
 }

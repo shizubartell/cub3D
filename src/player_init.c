@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 10:38:11 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/10 10:39:33 by iczarnie         ###   ########.fr       */
+/*   Updated: 2023/02/18 19:27:42 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void static	player_starting_angle(char c, t_game *game)
 {
 	if (c == 'N')
-		game->p_angle = -90.0;
+		game->p_angle = 270.0;
 	else if (c == 'S')
 		game->p_angle = 90.0;
 	else if (c == 'W')
@@ -32,6 +32,8 @@ void static	player_set(t_game *game, int i, int j)
 	game->map[i][j] = '0';
 	game->pl_x = j + 0.5;
 	game->pl_y = i + 0.5;
+	game->pl_dx = cos(deg_to_rad(game->p_angle));
+	game->pl_dy = sin(deg_to_rad(game->p_angle));
 }
 
 //checks if there is only one player + calls to set its starting postition

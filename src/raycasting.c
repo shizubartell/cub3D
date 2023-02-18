@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:28:27 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/17 14:30:41 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/18 13:11:26 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int orientation(t_game *game, double angle_ray, double *rays)
 	return (5);
 }
 
-
 //main for raycasting in our game
 //we initialize a rays array to store the x and y position
 //of the player, cosray and sinray store the proper cosine and sine
@@ -83,45 +82,50 @@ int orientation(t_game *game, double angle_ray, double *rays)
 //the other while loop casts the ray and checks if it hits an object (texture)
 //on the game map and goes on as long as it doesnt hit an object, updating the
 //ray position and adding cosray and sinray to x and y of the rays array.
+//this function is too long and will be split into 2 functions
 // void	raycaster(t_game *game)
 // {
-// 	double	raya_cos_sin[3];
+// 	double	angle_ray;
 // 	double	rays[2];
+// 	double	cosray;
+// 	double	sinray;
 // 	int		raycounter;
 
 // 	raycounter = 0;
-// 	raya_cos_sin[0] = game->p_angle - game->fov / 2;
+// 	angle_ray = game->p_angle - game->fov / 2;
 // 	while (raycounter < game->screen_w)
 // 	{
 // 		rays[0] = game->pl_x;
 // 		rays[1] = game->pl_y;
-// 		raya_cos_sin[1] = cos(deg_to_rad(raya_cos_sin[0])) / game->prec_ray;
-// 		raya_cos_sin[2] = sin(deg_to_rad(raya_cos_sin[0])) / game->prec_ray;
+// 		cosray = cos(deg_to_rad(angle_ray)) / game->prec_ray;
+// 		sinray = sin(deg_to_rad(angle_ray)) / game->prec_ray;
 // 		while (game->map[(int)rays[1]][(int)rays[0]] != '1')
 // 		{
-// 			rays[0] = rays[0] + raya_cos_sin[1];
-// 			rays[1] = rays[1] + raya_cos_sin[2];
+// 			rays[0] = rays[0] + cosray;
+// 			rays[1] = rays[1] + sinray;
 // 		}
-// 		get_distance(game, rays, raya_cos_sin[0]);
+// 		//distance_function
 // 		game->txt_pos_x = calc_modulo((64.0 * (rays[0] + rays[1])), 64.0);
 // 		pixeldrawer(game);
-// 		raya_cos_sin[0] = raya_cos_sin[0] + game->incr_angle;
+// 		//this function needs to be reworked to be able to 
+// 		//return according to the direction the player looks at the
+// 		//texture its supposed to display
+// 		angle_ray = angle_ray + game->incr_angle;
 // 		raycounter++;
 // 	}
 // 	mlx_put_image_to_window(game->mlx, game->window, game->data.img, 0, 0);
 // }
 
-
-void calculate_rays(t_game *game, double angle_ray, double rays[2], double cossinray[2])
+void calculate_rays(t_game *game, double angle_ray, double rays[2], double *cosray, double *ray_sin)
 {
 	rays[0] = game->pl_x;
 	rays[1] = game->pl_y;
-	cossinray[0] = cos(deg_to_rad(angle_ray)) / game->prec_ray;
-	cossinray[1] = sin(deg_to_rad(angle_ray)) / game->prec_ray;
+	*cosray = cos(deg_to_rad(angle_ray)) / game->prec_ray;
+	*ray_sin = sin(deg_to_rad(angle_ray)) / game->prec_ray;
 	while (game->map[(int)rays[1]][(int)rays[0]] != '1')
 	{
-		rays[0] = rays[0] + cossinray[0];
-		rays[1] = rays[1] + cossinray[1];
+		rays[0] = rays[0] + *cosray;
+		rays[1] = rays[1] + *ray_sin;
 	}
     get_distance(game, rays, angle_ray);
 	game->txt_pos_x = calc_modulo((64.0 * (rays[0] + rays[1])), 64.0);
@@ -131,17 +135,18 @@ void	raycaster(t_game *game)
 {
 	double	angle_ray;
 	double	rays[2];
-	double	cossinray[2];
+	double	cosray;
+	double	ray_sin;
 	int		raycounter;
 
 	raycounter = 0;
 	angle_ray = game->p_angle - game->fov / 2;
 	while (raycounter < game->screen_w)
 	{
-		calculate_rays(game, angle_ray, rays, cossinray);
+		calculate_rays(game, angle_ray, rays, &cosray, &ray_sin);
 		pixeldrawer(game, raycounter, orientation(game, angle_ray, rays));
 		angle_ray = angle_ray + game->incr_angle;
 		raycounter++;
 	}
-	mlx_put_image_to_window(game->mlx, game->window, game->data->img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->window, game->data.img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:59:32 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/17 14:48:26 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/18 15:12:15 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct game
     int height;
     double screen_w;
     double  screen_h;
+    double  save_dist;
     int     w;
     int     s;
     int     d;
@@ -81,6 +82,10 @@ typedef struct game
     int     txt_pos_y;
     int     txt_pos_x;
     int     wall_h;
+    // int     text_n;
+    // int     text_e;
+    // int     text_s;
+    // int     text_w;
     char    *n_texture;
     char    *s_texture;
     char    *w_texture;
@@ -96,11 +101,10 @@ typedef struct game
 	double		pl_dy;
 	double		p_angle;
 	double		fov;
-    double      save_dist;
     int         prec_ray;
     double      incr_angle;
-    struct data   *data;
-    struct texdata   *texdata;
+    struct data  data;
+    struct texdata  texdata;
     t_texdata     *text_n;
     t_texdata     *text_e;
     t_texdata     *text_s;
@@ -158,10 +162,9 @@ int key_setup_nopush(int key, t_game *game);
 //*********************************************************//
 //**         DISPLAY_COLOUR.C                           **//
 
-void    mlx_pixels(t_data *game, int x, int y, int colour);
-int text_pixels(int x, int y, t_texdata *game);
-void    texture_start(t_game *game, double *y_incrementer, double save_dist, int *y_text);
-void pixeldrawer(t_game *game, int x, int direction);
+void    mlx_pixels(t_game *game, int x, int y, int colour);
+int     text_pixels(int x, int y, t_texdata *game);
+void	pixeldrawer(t_game *game, int x, int direction);
 
 //*********************************************************//
 //**         INITIALIZE.C                            **//
@@ -169,14 +172,7 @@ void pixeldrawer(t_game *game, int x, int direction);
 void	ft_img_init(t_game *game);
 void    init_mlx(t_game *game);
 t_game	*init_game(char *map);
-void    init_for_movesrays(t_game *game);
-
-//*********************************************************//
-//**         INIT_TEXTURE.C                               **//
-
-void    init_text(t_game *game);
-t_texdata  *new_text(t_game *game, char *texture);
-int key_ray_loop(t_game *game);
+void    init_for_moves(t_game *game);
 
 //*********************************************************//
 //**         MOVE.C                            **//
@@ -195,10 +191,11 @@ int	player_check(t_game *game);
 //**         RAYCASTING.C                               **//
 
 double	calc_modulo(double a, double b);
-void	get_distance(t_game *game, double *rays, double ray_angle);
-int orientation(t_game *game, double angle_ray, double *rays);
-void calculate_rays(t_game *game, double angle_ray, double rays[2], double cossinray[2]);
+void calculate_rays(t_game *game, double angle_ray, double rays[2], double *cosray, double *ray_sin);
 void	raycaster(t_game *game);
-t_data	*init_data(void);
+void    init_text(t_game *game);
+t_texdata  *xpm_to_text(t_game *game, char *texture);
+int	deal_loop(t_game *game);
+void	get_text_start(t_game *game, double *y_incrementer, double save_dist, int *y_text);
 
 #endif

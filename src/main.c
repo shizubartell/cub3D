@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 11:11:24 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/20 13:32:33 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:53:17 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	get_width_height(t_game *game, char *map)
 	line = get_next_line(fd);
 	while (!is_beggining_of_map(line))
 	{
+		free(line);
 		line = get_next_line(fd);
 		game->row_beggining_of_map++;
 	}
@@ -36,6 +37,8 @@ void	get_width_height(t_game *game, char *map)
 		if (game->width < (int)ft_strlen(trimmed_line))
 			game->width = (int)ft_strlen(trimmed_line);
 		game->height++;
+		free(line);
+		free(trimmed_line);
 		line = get_next_line(fd);
 		trimmed_line = ft_strtrim(line, "\n");
 	}
@@ -104,7 +107,7 @@ int	main(int argc, char **argv)
 		dead_end("Wrong number of arguments!\n");
 	valid_extension(argv[1]);
 	game = init_game(argv[1]);
-	init_mlx(game);
+	// init_mlx(game);
 	get_width_height(game, argv[1]);
 	read_textures(game, argv[1]);
 	mapreader(game, argv[1]);
@@ -112,6 +115,8 @@ int	main(int argc, char **argv)
 	check_map_letters(game);
 	if (!player_check(game))
 		dead_end("Wrong number of players!\n");
+	// game = init_game(argv[1]);
+	init_mlx(game);
 	// if (player_check(game) == 0)
 	// 	printf("Wrong number of players\n");
 	ft_img_init(game);

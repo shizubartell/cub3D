@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 10:04:09 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/20 13:05:18 by iczarnie         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:45:36 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	check_map_borders(t_game *game)
 	{
 		if (game->map[0][i] != '1' || game->map[game->height - 1][i] != '1')
 		{
+			// free_map(game);
 			dead_end("Wrong borders for the map!\n");
 		}
 		i++;
@@ -57,6 +58,7 @@ int	check_map_borders(t_game *game)
 	{
 		if (game->map[i][0] != '1' || game->map[i][game->width - 1] != '1')
 		{
+			// free_map(game);
 			dead_end("Wrong borders for the map!\n");
 		}
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 15:04:30 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/20 12:58:14 by iczarnie         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:58:03 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static char	*texture_from_dot(char *line)
 	i = 0;
 	while (line[i] != '.')
 		i++;
+	free(line);
 	return (ft_strtrim(&line[i], "\n"));
 }
 
@@ -50,6 +51,7 @@ static char	*rgb_skip_spaces(char *line)
 	i = 0;
 	while (line[i] == ' ' || line[i] == 'F' || line[i] == 'C')
 		i++;
+	free(line);
 	return (ft_strtrim(&line[i], "\n"));
 }
 

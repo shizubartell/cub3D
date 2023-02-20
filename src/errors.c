@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 12:33:11 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/20 13:21:54 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/20 15:42:00 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ void	free_game(t_game *game)
 		i++;
 	}
 	free(game->map);
-	// i = 0;
-	// while (i < 4)
-	// {
 	if (game->text_n)
 		mlx_destroy_image(game->mlx, game->text_n);
 	if (game->text_e)
@@ -65,8 +62,6 @@ void	free_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->text_s);
 	if (game->window)
 		mlx_destroy_window(game->mlx, game->window);
-		// i++;
-	// }
 	free(game);
 }
 

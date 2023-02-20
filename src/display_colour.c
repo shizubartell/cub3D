@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:09:33 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/18 19:01:40 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:22:59 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,47 +103,3 @@ void	pixeldrawer(t_game *game, int x, int direction)
 	while (++y < y_max)
 		mlx_pixels(game, x, y, game->floor_rgb);
 }
-
-// void draw_ceiling_and_floor(t_game *game, int x) 
-// {
-//     int y_max = game->screen_h;
-//     int ceiling_height = y_max / 2 - game->wall_h;
-//     int y;
-
-//     for (y = 0; y < ceiling_height; y++) {
-//         mlx_pixels(game, x, y, game->ceilling_rgb);
-//     }
-
-//     for (y = ceiling_height + game->wall_h * 2; y < y_max; y++) {
-//         mlx_pixels(game, x, y, game->floor_rgb);
-//     }
-// }
-
-// void draw_wall(t_game *game, int x, int direction) 
-// {
-//     double y;
-//     double y_incrementer;
-//     double d;
-//     int y_max;
-
-//     y = -1;
-//     y_incrementer = 0;
-//     y_max = game->screen_h;
-//     get_text_start(game, &y_incrementer, game->save_dist, &game->txt_pos_y);
-
-//     d = y;
-//     while (y < y_max / 2 + game->wall_h) {
-//         d = d + y_incrementer;
-//         while (y < d && y < y_max) {
-//             display_texture(direction, game, x, y);
-//             y++;
-//         }
-//         game->txt_pos_y++;
-//     }
-// }
-
-// void pixeldrawer(t_game *game, int x, int direction) 
-// {
-//     draw_ceiling_and_floor(game, x);
-//     draw_wall(game, x, direction);
-// }

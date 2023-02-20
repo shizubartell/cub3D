@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:30:47 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/20 13:34:39 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:40:31 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,10 @@
 //as it expands to a different size than 0
 int	ft_closing(int key, t_game *game)
 {
-	if (key == 53)
-	{
-		mlx_clear_window(game->mlx, game->window);
-		mlx_destroy_window(game->mlx, game->window);
-		printf("Exiting Otter 3D\n");
-		exit(0);
-	}
+	mlx_clear_window(game->mlx, game->window);
+	mlx_destroy_window(game->mlx, game->window);
+	printf("Exiting Otter 3D\n");
+	exit(0);
 	return (0);
 }
 

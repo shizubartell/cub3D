@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 08:34:46 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/20 15:13:33 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:21:01 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	map_allocater(t_game *game)
 	int	i;
 
 	i = 0;
-	game->map = malloc (sizeof(char **) * game->height + 1);
+	game->map = malloc (sizeof(char *) * (game->height + 1));
 	game->map[game->height] = 0;
 	while (i < game->height)
 	{
-		game->map[i] = malloc (sizeof(char *) * game->width + 1);
+		game->map[i] = ft_calloc (sizeof(char) * (game->width + 1), 1);
 		game->map[i][game->width] = '\0';
 		i++;
 	}

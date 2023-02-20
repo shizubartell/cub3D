@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 15:04:30 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/20 15:11:58 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:40:12 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static char	*texture_from_dot(char *line)
 	i = 0;
 	while (line[i] != '.')
 		i++;
-	free(line);
 	return (ft_strtrim(&line[i], "\n"));
 }
 
@@ -51,7 +50,6 @@ static char	*rgb_skip_spaces(char *line)
 	i = 0;
 	while (line[i] == ' ' || line[i] == 'F' || line[i] == 'C')
 		i++;
-	free(line);
 	return (ft_strtrim(&line[i], "\n"));
 }
 
@@ -85,16 +83,17 @@ int	read_textures(t_game *game, char *map_file)
 	row_index = 0;
 	fd = open(map_file, O_RDONLY);
 	if (fd == -1)
-		return (errorhandler(3));
+		dead_end("Error filedescriptor!\n");
 	line = get_next_line(fd);
 	while (line)
 	{
 		fill_texture(game, line);
+		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
 	close(fd);
 	if (!check_textures(game))
-		errorhandler(4);
+		dead_end("Wrong texture in map!\n");
 	return (1);
 }

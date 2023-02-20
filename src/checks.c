@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 10:04:09 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/20 14:45:36 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:42:51 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	valid_extension(char *path)
 	length = ft_strlen(path);
 	if (ft_strnstr(path + length - 4, ".cub", 4) == 0)
 	{
-		return (errorhandler(1));
+		dead_end("Extension of the map must be .cub!\n");
 	}
 	return (0);
 }
@@ -32,6 +32,7 @@ int	is_beggining_of_map(char *line)
 
 	i = 0;
 	while (line[i] == ' ')
+		free(line);
 		i++;
 	if (line[i] == '1' || line[i] == '0')
 		return (1);
@@ -48,7 +49,6 @@ int	check_map_borders(t_game *game)
 	{
 		if (game->map[0][i] != '1' || game->map[game->height - 1][i] != '1')
 		{
-			// free_map(game);
 			dead_end("Wrong borders for the map!\n");
 		}
 		i++;
@@ -58,7 +58,6 @@ int	check_map_borders(t_game *game)
 	{
 		if (game->map[i][0] != '1' || game->map[i][game->width - 1] != '1')
 		{
-			// free_map(game);
 			dead_end("Wrong borders for the map!\n");
 		}
 		i++;
@@ -82,9 +81,7 @@ int	check_map_letters(t_game *game)
 				|| game->map[i][j] == 'W' || game->map[i][j] == 'E'
 				|| game->map[i][j] == '0' || game->map[i][j] == '1'))
 			{
-				printf("Wrong character: %c \n", game->map[i][j]);
-				errorhandler(5);
-				return (0);
+				dead_end("Wrong character in map!\n");
 			}
 			j++;
 		}

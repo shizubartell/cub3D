@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:09:07 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/18 18:09:36 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:23:05 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,9 @@ static int	check_characters(char *str)
 int	check_colours(t_game *game)
 {
 	if (!check_characters(game->ceilling_colour))
-		errorhandler(8);
+		dead_end("Wrong character in colour\n");
 	if (!check_characters(game->floor_colour))
-		errorhandler(8);
+		dead_end("Wrong character in colour\n");
 	ceilling_colour(game);
 	floor_colour(game);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 15:04:30 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/03 11:44:57 by iczarnie         ###   ########.fr       */
+/*   Updated: 2023/02/20 12:58:14 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static char	*texture_from_dot(char *line)
 	int	i;
 
 	i = 0;
-	while(line[i] != '.')
+	while (line[i] != '.')
 		i++;
-	return(ft_strtrim(&line[i], "\n"));
+	return (ft_strtrim(&line[i], "\n"));
 }
 
 //strips rgb for floor and ceilling from unnecessary characters
@@ -48,9 +48,9 @@ static char	*rgb_skip_spaces(char *line)
 	int	i;
 
 	i = 0;
-	while(line[i] == ' ' || line[i] == 'F' || line[i] == 'C')
+	while (line[i] == ' ' || line[i] == 'F' || line[i] == 'C')
 		i++;
-	return(ft_strtrim(&line[i], "\n"));
+	return (ft_strtrim(&line[i], "\n"));
 }
 
 //puts textuers in the game structure

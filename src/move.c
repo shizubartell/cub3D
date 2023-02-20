@@ -6,7 +6,7 @@
 /*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 10:36:08 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/10 10:38:26 by iczarnie         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:01:40 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,3 @@ int	deal_key(t_game *game)
 		rotation(game, 3);
 	return (0);
 }
-

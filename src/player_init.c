@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 10:38:11 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/18 19:27:42 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:02:58 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,3 @@ int	player_check(t_game *game)
 		return (0);
 	return (1);
 }
-
-

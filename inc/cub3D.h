@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:59:32 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/18 18:21:41 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:01:30 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,8 @@ void	pixeldrawer(t_game *game, int x, int direction);
 
 int				errorhandler(int i);
 int             dead_end(char *str);
+void            free_game(t_game *game);
+void	free_map(t_game *game);
 
 //*********************************************************//
 //**         FLOOR_CEILLING_COLOURS.C                   **//

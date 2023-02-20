@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:28:27 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/18 13:11:26 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:01:07 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	get_distance(t_game *game, double *rays, double ray_angle)
 	game->wall_h = (int)(game->screen_h / 2 / distance);
 }
 
-int orientation(t_game *game, double angle_ray, double *rays)
+int	orientation(t_game *game, double angle_ray, double *rays)
 {
 	int	dx;
 	int	dy;
@@ -116,7 +116,8 @@ int orientation(t_game *game, double angle_ray, double *rays)
 // 	mlx_put_image_to_window(game->mlx, game->window, game->data.img, 0, 0);
 // }
 
-void calculate_rays(t_game *game, double angle_ray, double rays[2], double *cosray, double *ray_sin)
+void	calculate_rays(t_game *game, double angle_ray,
+	double rays[2], double *cosray, double *ray_sin)
 {
 	rays[0] = game->pl_x;
 	rays[1] = game->pl_y;
@@ -127,7 +128,7 @@ void calculate_rays(t_game *game, double angle_ray, double rays[2], double *cosr
 		rays[0] = rays[0] + *cosray;
 		rays[1] = rays[1] + *ray_sin;
 	}
-    get_distance(game, rays, angle_ray);
+	get_distance(game, rays, angle_ray);
 	game->txt_pos_x = calc_modulo((64.0 * (rays[0] + rays[1])), 64.0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 12:33:11 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/18 18:12:04 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:21:54 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,47 @@ int	dead_end(char *str)
 {
 	ft_putstr_fd(str, 0);
 	exit(0);
+}
+
+void	free_game(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->height)
+	{
+		free(game->map[i]);
+		i++;
+	}
+	free(game->map);
+	// i = 0;
+	// while (i < 4)
+	// {
+	if (game->text_n)
+		mlx_destroy_image(game->mlx, game->text_n);
+	if (game->text_e)
+		mlx_destroy_image(game->mlx, game->text_e);
+	if (game->text_w)
+		mlx_destroy_image(game->mlx, game->text_w);
+	if (game->text_s)
+		mlx_destroy_image(game->mlx, game->text_s);
+	if (game->window)
+		mlx_destroy_window(game->mlx, game->window);
+		// i++;
+	// }
+	free(game);
+}
+
+void	free_map(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->height)
+	{
+		free(game->map[i]);
+		i++;
+	}
+	free(game->map);
+	free(game);
 }

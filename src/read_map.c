@@ -6,7 +6,7 @@
 /*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 08:34:46 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/10 10:49:36 by iczarnie         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:02:23 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	read_maprows(char *row, int fd, t_game *game)
 void	filling_space(t_game *game)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	j = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 10:04:09 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/18 19:02:53 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:05:18 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	check_map_borders(t_game *game)
 		if (game->map[0][i] != '1' || game->map[game->height - 1][i] != '1')
 		{
 			dead_end("Wrong borders for the map!\n");
-			// return(0);
 		}
 		i++;
 	}
@@ -58,9 +57,8 @@ int	check_map_borders(t_game *game)
 	{
 		if (game->map[i][0] != '1' || game->map[i][game->width - 1] != '1')
 		{
-            dead_end("Wrong borders for the map!\n");
-            // return(0);
-        }
+			dead_end("Wrong borders for the map!\n");
+		}
 		i++;
 	}
 	return (1);
@@ -76,16 +74,16 @@ int	check_map_letters(t_game *game)
 	j = 0;
 	while (i < game->height)
 	{
-        while (j < game->width)
-        {
+		while (j < game->width)
+		{
 			if (!(game->map[i][j] == 'N' || game->map[i][j] == 'S'
 				|| game->map[i][j] == 'W' || game->map[i][j] == 'E'
 				|| game->map[i][j] == '0' || game->map[i][j] == '1'))
-					{
-						printf("Wrong character: %c \n", game->map[i][j]);
-						errorhandler(5);
-						return(0);
-					}
+			{
+				printf("Wrong character: %c \n", game->map[i][j]);
+				errorhandler(5);
+				return (0);
+			}
 			j++;
 		}
 		j = 0;

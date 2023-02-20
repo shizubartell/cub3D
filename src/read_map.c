@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 08:34:46 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/20 14:48:13 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/20 15:13:33 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	read_maprows(char *row, int fd, t_game *game)
 	row = get_next_line(fd);
 	while (i++ < game->row_beggining_of_map)
 	{
-		// free(row);
+		free(row);
 		row = get_next_line(fd);
 	}
 	i = 0;
@@ -61,10 +61,9 @@ int	read_maprows(char *row, int fd, t_game *game)
 	{
 		game->map[i] = fill_map(game->map[i], row);
 		i++;
-		// free(row);
+		free(row);
 		row = get_next_line(fd);
 	}
-	free(row);
 	return (i);
 }
 

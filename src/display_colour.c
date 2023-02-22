@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:09:33 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/20 17:22:59 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/22 10:37:32 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,30 +48,6 @@ void	display_texture(int direction, t_game *game, int x, int y)
 		mlx_pixels(game, x, y, \
 			text_pixels(game->txt_pos_x, game->txt_pos_y, game->text_e));
 }
-
-//drawing the pixels along the x and y coordinates
-//from floor and ceiling rgb
-//additionally adding setting the texture pixels
-//in the future?
-// void    pixeldrawer(t_game *game)
-// {
-//     int  y;
-//     int     x;
-//     y = 0;
-//     while (y < game->screen_h)
-//     {
-//         x = -1;
-//         while (++x < game->screen_w)
-//         {
-// 			if (y < game->screen_h / 2)
-//             	mlx_pixels(game, x, y, game->ceilling_rgb);
-// 			else
-// 				mlx_pixels(game, x, y, game->floor_rgb);
-//         }	
-//         y++;
-//     }   
-//     mlx_put_image_to_window(game->mlx, game->window, game->data.img, 0, 0);
-// }
 
 //drawing the pixels along the x and y coordinates
 //from floor and ceiling rgb

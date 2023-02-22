@@ -6,23 +6,11 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:30:47 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/20 18:40:31 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:45:30 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
-
-//closing function for the window
-//EXIT_SUCCESS should prevent leaks
-//as it expands to a different size than 0
-int	ft_closing(int key, t_game *game)
-{
-	mlx_clear_window(game->mlx, game->window);
-	mlx_destroy_window(game->mlx, game->window);
-	printf("Exiting Otter 3D\n");
-	exit(0);
-	return (0);
-}
 
 //key setup for the used keys in our cub3D
 //might be later moved on to its own .c file

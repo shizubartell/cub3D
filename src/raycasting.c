@@ -6,18 +6,11 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:28:27 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/20 17:43:36 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/22 10:38:30 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
-
-//converts an angle from degrees to radians
-//it returns the equivalent in radians
-// double	return_rad(double deg)
-// {
-// 	return (deg * PI / 180);
-// }
 
 //calculates the mathematical modulo between two
 //numbers a and b, the function returns the result of the

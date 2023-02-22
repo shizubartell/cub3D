@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 10:04:09 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/20 18:42:51 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/22 11:48:37 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	is_beggining_of_map(char *line)
 
 	i = 0;
 	while (line[i] == ' ')
-		free(line);
 		i++;
 	if (line[i] == '1' || line[i] == '0')
 		return (1);

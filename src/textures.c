@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 15:04:30 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/20 18:40:12 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:42:21 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,21 @@ int	check_textures(t_game *game)
 }
 
 //skips spaces and trims to return the right texture
-static char	*texture_from_dot(char *line)
+char	*texture_from_dot(char *line)
 {
-	int	i;
+	int		i;
+	char	*texture;
 
 	i = 0;
 	while (line[i] != '.')
 		i++;
-	return (ft_strtrim(&line[i], "\n"));
+	texture = ft_strtrim(&line[i], "\n");
+	return (texture);
 }
 
 //strips rgb for floor and ceilling from unnecessary characters
 //and spaces
-static char	*rgb_skip_spaces(char *line)
+char	*rgb_skip_spaces(char *line)
 {
 	int	i;
 
@@ -56,21 +58,19 @@ static char	*rgb_skip_spaces(char *line)
 //puts textuers in the game structure
 int	fill_texture(t_game *game, char *line)
 {
-	if (line[0] == 'N' && line[1] == 'O')
-		game->n_texture = texture_from_dot(line);
-	else if (line[0] == 'S' && line[1] == 'O')
-		game->s_texture = texture_from_dot(line);
-	else if (line[0] == 'W' && line[1] == 'E')
-		game->w_texture = texture_from_dot(line);
-	else if (line[0] == 'E' && line[1] == 'A')
-		game->e_texture = texture_from_dot(line);
-	else if (line[0] == 'F')
-		game->floor_colour = rgb_skip_spaces(line);
-	else if (line[0] == 'C')
-		game->ceilling_colour = rgb_skip_spaces(line);
+	int	i;
+
+	i = 0;
+	i += fill_a(game, line);
+	i += fill_b(game, line);
+	i += fill_c(game, line);
+	if (i != 0)
+		return (1);
 	else
+	{
+		check_for_flag(game, line);
 		return (0);
-	return (1);
+	}
 }
 
 //reads in the texture lines from map file by gnl
@@ -87,13 +87,17 @@ int	read_textures(t_game *game, char *map_file)
 	line = get_next_line(fd);
 	while (line)
 	{
-		fill_texture(game, line);
+		game->key_count += fill_texture(game, line);
 		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
 	close(fd);
+	if (game->key_count > 6)
+		dead_end("Duplicate texture/colour in map!\n");
 	if (!check_textures(game))
-		dead_end("Wrong texture in map!\n");
+		dead_end("Wrong texture/colour in map!\n");
+	if (game->map_flag == 1)
+		dead_end("Wrong input in the map file!\n");
 	return (1);
 }

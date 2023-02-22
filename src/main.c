@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 11:11:24 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/20 18:42:38 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:46:15 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		dead_end("Wrong number of arguments!\n");
 	valid_extension(argv[1]);
-	game = init_game(argv[1]);
+	game = init_game();
 	get_width_height(game, argv[1]);
 	read_textures(game, argv[1]);
 	mapreader(game, argv[1]);
@@ -108,9 +108,8 @@ int	main(int argc, char **argv)
 	ft_img_init(game);
 	init_text(game);
 	check_colours(game);
-	printing_things(game);
 	mlx_hook(game->window, 2, 0, key_setup_push, game);
-	mlx_hook(game->window, 17, 0, ft_closing, 0);
+	mlx_hook(game->window, 17, 0, dead_end, 0);
 	mlx_hook(game->window, 3, 0, key_setup_nopush, game);
 	mlx_loop_hook(game->mlx, deal_loop, game);
 	mlx_loop(game->mlx);

@@ -6,7 +6,7 @@
 #    By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 10:43:49 by abartell          #+#    #+#              #
-#    Updated: 2023/02/20 12:53:38 by abartell         ###   ########.fr        #
+#    Updated: 2023/02/22 13:43:14 by abartell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 
 NAME						:=			cub3D
 
-CFLAGS						:=			-Wall -Wextra -g
+CFLAGS						:=			-Wall -Wextra -Werror -g
 CC							:=			gcc
 RM							:=			rm -rf
 
@@ -57,7 +57,8 @@ SRC_FILES					:=	main.c \
 								move.c \
 								player_init.c \
 								init_texture.c \
-								raycasting.c
+								raycasting.c \
+								flagchecker.c
 
 OBJ_FILES					:= ${SRC_FILES:.c=.o}
 SRC							:= $(addprefix $(SRC_DIR), $(SRC_FILES))

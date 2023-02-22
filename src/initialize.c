@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:37:01 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/18 19:28:03 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:37:21 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_img_init(t_game *game)
 		&game->data.line_length, &game->data.endian);
 }
 
-t_data	*data_init(t_data *data)
+static void	data_init(t_data *data)
 {
 	data->addr = 0;
 	data->bits_pp = 0;
@@ -43,7 +43,7 @@ void	init_mlx(t_game *game)
 }
 
 //game initialisation
-t_game	*init_game(char *map)
+t_game	*init_game(void)
 {
 	t_game	*game;
 
@@ -64,6 +64,8 @@ t_game	*init_game(char *map)
 	game->save_dist = 0;
 	game->wall_h = 0;
 	game->txt_pos_y = 0;
+	game->key_count = 0;
+	game->map_flag = 0;
 	init_for_moves(game);
 	return (game);
 }
@@ -74,6 +76,12 @@ void	init_for_moves(t_game *game)
 	game->d = 0;
 	game->w = 0;
 	game->s = 0;
+	game->n_flag = 0;
+	game->s_flag = 0;
+	game->w_flag = 0;
+	game->e_flag = 0;
+	game->f_flag = 0;
+	game->c_flag = 0;
 	game->arrow_l = 0;
 	game->arrow_r = 0;
 	game->pl_x = 0.0;

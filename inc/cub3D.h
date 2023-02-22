@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:59:32 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/20 17:41:51 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:45:09 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,14 @@ typedef struct game
 	int				txt_pos_y;
 	int				txt_pos_x;
 	int				wall_h;
+	int				key_count;
+	int				map_flag;
+	int				n_flag;
+	int				s_flag;
+	int				w_flag;
+	int				e_flag;
+	int				f_flag;
+	int				c_flag;
 	char			*n_texture;
 	char			*s_texture;
 	char			*w_texture;
@@ -134,6 +142,14 @@ void		free_game(t_game *game);
 void		free_map(t_game *game);
 
 //*********************************************************//
+//**         FLAGCHECKER.C                              **//
+
+void		check_for_flag(t_game *game, char *line);
+int			fill_a(t_game *game, char *line);
+int			fill_b(t_game *game, char *line);
+int			fill_c(t_game *game, char *line);
+
+//*********************************************************//
 //**         FLOOR_CEILLING_COLOURS.C                   **//
 
 int			check_colours(t_game *game);
@@ -156,6 +172,8 @@ void		print_map(t_game *game);
 int			check_textures(t_game *game);
 int			fill_texture(t_game *game, char *line);
 int			read_textures(t_game *game, char *map_file);
+char		*texture_from_dot(char *line);
+char		*rgb_skip_spaces(char *line);
 
 //*********************************************************//
 //**                READ_MAP.C                          **//
@@ -169,16 +187,16 @@ int			mapreader(t_game *game, char *file);
 //*********************************************************//
 //**         MLX_AND_HOOKS.C                            **//
 
-int			ft_closing(int key, t_game *game);
+int			ft_closing(t_game *game);
 int			key_setup_push(int key, t_game *window);
 int			key_setup_nopush(int key, t_game *game);
 
 //*********************************************************//
-//**         INITIALIZE.C                            **//
+//**         INITIALIZE.C                               **//
 
 void		ft_img_init(t_game *game);
 void		init_mlx(t_game *game);
-t_game		*init_game(char *map);
+t_game		*init_game(void);
 void		init_for_moves(t_game *game);
 
 //*********************************************************//

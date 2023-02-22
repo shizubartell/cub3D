@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 10:38:11 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/22 11:11:29 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:22:36 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 void static	player_starting_angle(char c, t_game *game)
 {
 	if (c == 'N')
-		game->p_angle = 0.0;
-	else if (c == 'S')
-		game->p_angle = 180.0;
-	else if (c == 'W')
-		game->p_angle = 90.0;
-	else if (c == 'E')
 		game->p_angle = 270.0;
+	else if (c == 'S')
+		game->p_angle = 90.0;
+	else if (c == 'W')
+		game->p_angle = 180.0;
+	else if (c == 'E')
+		game->p_angle = 0.0;
 }
 
 //sets starting postion of the player

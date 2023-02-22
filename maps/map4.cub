@@ -1,0 +1,18 @@
+NO ./textures/otterN.xpm
+SO ./textures/sharkS.xpm
+WE ./textures/catW.xpm
+EA ./textures/pandaE.xpm
+
+F 0,136,0
+
+C 0,255,255
+       
+111111111111
+100000000001
+100000000001
+111110111111
+111110111111
+111110111111
+100000000001
+1000000000N1
+111111111111

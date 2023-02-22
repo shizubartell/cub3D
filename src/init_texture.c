@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:51:00 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/18 18:42:04 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:39:59 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_texdata	*xpm_to_text(t_game *game, char *texture)
 {
 	t_texdata	*input;
 
+	if (open(texture, O_RDONLY) == -1)
+		dead_end("Error, wrong texture path!\n");
 	input = ft_calloc (sizeof(t_texdata), 1);
 	input->img = mlx_xpm_file_to_image(game->mlx, texture, \
 		&input->w, &input->h);

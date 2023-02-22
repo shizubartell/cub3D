@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 15:04:30 by iczarnie          #+#    #+#             */
-/*   Updated: 2023/02/22 13:42:21 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:39:18 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	read_textures(t_game *game, char *map_file)
 	if (game->key_count > 6)
 		dead_end("Duplicate texture/colour in map!\n");
 	if (!check_textures(game))
-		dead_end("Wrong texture/colour in map!\n");
+		dead_end("Lacking texture/colour in map!\n");
 	if (game->map_flag == 1)
 		dead_end("Wrong input in the map file!\n");
 	return (1);

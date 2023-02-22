@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:09:33 by abartell          #+#    #+#             */
-/*   Updated: 2023/02/22 10:37:32 by abartell         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:25:35 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ void	get_text_start(t_game *game, double *y_incrementer,
 //direction of where the texture is supposed to be displayed
 void	display_texture(int direction, t_game *game, int x, int y)
 {
-	if (direction == 1)
+	if (direction == 4)
 		mlx_pixels(game, x, y, \
 			text_pixels(game->txt_pos_x, game->txt_pos_y, game->text_n));
-	else if (direction == 2)
-		mlx_pixels(game, x, y, \
-			text_pixels(game->txt_pos_x, game->txt_pos_y, game->text_s));
 	else if (direction == 3)
 		mlx_pixels(game, x, y, \
+			text_pixels(game->txt_pos_x, game->txt_pos_y, game->text_s));
+	else if (direction == 2)
+		mlx_pixels(game, x, y, \
 			text_pixels(game->txt_pos_x, game->txt_pos_y, game->text_w));
-	else if (direction == 4)
+	else if (direction == 1)
 		mlx_pixels(game, x, y, \
 			text_pixels(game->txt_pos_x, game->txt_pos_y, game->text_e));
 }
